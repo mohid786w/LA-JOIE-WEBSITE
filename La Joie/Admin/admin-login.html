@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - La Joie Real Estate</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --accent-color: #b1935a;
+            --light-color: #f8f8f8;
+            --form-bg: rgba(255, 255, 255, 0.9);
+        }
+        a{
+            color: var(--accent-color);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .login-container {
+            width: 400px;
+            padding: 40px;
+            background-color: var(--form-bg);
+            border-radius: 10px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+            .input-group label {
+                display: block;
+                margin-bottom: 8px;
+                color: var(--primary-color);
+                font-weight: 500;
+            }
+
+            .input-group input {
+                width: 100%;
+                padding: 15px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                outline: none;
+                font-size: 1rem;
+                transition: border-color 0.3s;
+            }
+
+                .input-group input:focus {
+                    border-color: var(--accent-color);
+                }
+
+            .input-group .icon {
+                position: absolute;
+                right: 15px;
+                top: 42px;
+                color: #999;
+            }
+
+        button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+            button:hover {
+                background-color: #9a7d48;
+            }
+
+        .error-message {
+            color: #ff4136;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            display: none;
+        }
+        /* Responsive Design - Add this CSS to your existing styles */
+
+        /* Tablet styles */
+        @media screen and (max-width: 768px) {
+            .login-container {
+                width: 90%;
+                max-width: 500px;
+                padding: 35px 30px;
+                margin: 20px;
+            }
+
+            .logo {
+                font-size: 2.2rem;
+                margin-bottom: 25px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+                margin-bottom: 18px;
+            }
+
+            .input-group {
+                margin-bottom: 25px;
+            }
+
+                .input-group input {
+                    padding: 14px;
+                    font-size: 16px; /* Prevents zoom on iOS */
+                }
+
+            button {
+                padding: 14px 25px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Mobile styles */
+        @media screen and (max-width: 480px) {
+            body {
+                padding: 15px;
+                background-attachment: scroll; /* Better performance on mobile */
+            }
+
+            .login-container {
+                width: 100%;
+                max-width: none;
+                padding: 30px 25px;
+                margin: 0;
+                border-radius: 8px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            }
+
+            .logo {
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+                margin-bottom: 15px;
+            }
+
+            .input-group {
+                margin-bottom: 20px;
+            }
+
+                .input-group label {
+                    margin-bottom: 6px;
+                    font-size: 0.9rem;
+                }
+
+                .input-group input {
+                    padding: 12px;
+                    font-size: 16px; /* Prevents zoom on iOS */
+                    border-radius: 4px;
+                }
+
+                .input-group .icon {
+                    top: 38px;
+                    right: 12px;
+                    font-size: 0.9rem;
+                }
+
+            button {
+                padding: 12px 20px;
+                font-size: 0.95rem;
+                border-radius: 4px;
+                margin-top: 8px;
+            }
+
+            .error-message {
+                font-size: 0.85rem;
+                margin: 12px 0;
+            }
+        }
+
+        /* Extra small mobile styles */
+        @media screen and (max-width: 320px) {
+            .login-container {
+                padding: 25px 20px;
+            }
+
+            .logo {
+                font-size: 1.8rem;
+            }
+
+            h1 {
+                font-size: 1.3rem;
+            }
+
+            .input-group input {
+                padding: 11px;
+            }
+
+            button {
+                padding: 11px 18px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Landscape orientation adjustments */
+        @media screen and (max-height: 600px) and (orientation: landscape) {
+            body {
+                align-items: flex-start;
+                padding-top: 20px;
+            }
+
+            .login-container {
+                margin: 20px auto;
+                padding: 25px;
+            }
+
+            .logo {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+
+            h1 {
+                font-size: 1.3rem;
+                margin-bottom: 12px;
+            }
+
+            .input-group {
+                margin-bottom: 18px;
+            }
+        }
+
+        /* Touch device improvements */
+        @media (hover: none) and (pointer: coarse) {
+            button:hover {
+                background-color: var(--accent-color); /* Remove hover effect on touch devices */
+            }
+
+            button:active {
+                background-color: #9a7d48;
+                transform: scale(0.98);
+            }
+        }
+
+        /* High DPI display adjustments */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .login-container {
+                box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo"><a href="../Homepage/homepage.html">LA JOIE</a></div>
+        <h1>Admin Login</h1>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+                <div class="icon"><i class="fas fa-user"></i></div>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <div class="icon"><i class="fas fa-lock"></i></div>
+            </div>
+
+            <div class="error-message" id="errorMessage">Invalid username or password. Please try again.</div>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('loginForm');
+            const errorMessage = document.getElementById('errorMessage');
+
+            // Set default credentials (in real app, this would be handled server-side)
+            const adminCredentials = {
+                username: 'admin',
+                password: 'lajoie123'
+            };
+
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                // Simple authentication check
+                if (username === adminCredentials.username && password === adminCredentials.password) {
+                    // Store login state in sessionStorage
+                    sessionStorage.setItem('isLoggedIn', 'true');
+                    // Redirect to admin dashboard
+                    window.location.href = 'admin-dashboard.html';
+                } else {
+                    // Show error message
+                    errorMessage.style.display = 'block';
+
+                    // Shake animation for error
+                    loginForm.classList.add('shake');
+                    setTimeout(() => {
+                        loginForm.classList.remove('shake');
+                    }, 500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
